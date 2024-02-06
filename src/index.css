@@ -1,7 +1,5 @@
 /* Todo:
-1. Make bricks square at all times.
-2. Make sure rows can not be fewer than 3 bricks.
-3. Test it out in mobile and iPad-viewport */
+Test it out in mobile and iPad-viewport */
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -17,7 +15,7 @@ body {
 
 #container {
   margin: 0 auto;
-  width: min(100%, 70ch);
+  width: min(100%, 50ch);
   height: auto;
   margin-inline: auto;
   background-color: #d3d3d3;
@@ -26,27 +24,34 @@ body {
 
 ul {
  display: grid;
- grid-template-columns: repeat(auto-fit, minmax(min(100%, 15ch), 1fr));
+ grid-template-columns: repeat(auto-fit, minmax(min(100%, 12ch), 1fr));
  grid-auto-rows: auto;
  padding: 0;
  margin: 0;
 }
 
 ul li {
-/*   width: min(100%, 14ch);
-  height: 100px;
-  gap: 15%; */
-  /*   width: 25%;
-  height: auto; */
-  width: 100%;
-  height: 100px;
-  list-style-type: none;
-  background-color: aqua;
+  aspect-ratio: 1/1;
+  width: min(100%);
+  background-color: #add8e6;
   border: 1px solid darkgray;
   border-radius: 10px;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
 }
 
 .empty {
   background-color: #d3d3d3;
   border: none;
+}
+
+button {
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5em 1em;
+  margin-top: 1.5em;
 }

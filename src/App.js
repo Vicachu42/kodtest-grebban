@@ -1,30 +1,17 @@
-import Header from "./components/Header";
+import PlayingField from "./components/PlayingField";
 import ShuffleButton from "./components/ShuffleButton";
+import gridVariables from './config.js'
 
 function App() {
+  const rows = gridVariables.rows;
+  const columns = gridVariables.columns
+
   return (
     <>
-      <Header />
-      <div id="container">
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
-          <li>6</li>
-          <li>7</li>
-          <li>8</li>
-          <li>9</li>
-          <li>10</li>
-          <li>11</li>
-          <li>12</li>
-          <li>13</li>
-          <li>14</li>
-          <li>15</li>
-          <li className="empty"></li>
-        </ul>
-      </div>
+      <header>
+        <h1>Sliding Tile Puzzle</h1>
+      </header>
+      <PlayingField numRows={rows} numColumns={columns} />
       <ShuffleButton />
     </>
   );

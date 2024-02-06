@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 const ShuffleButton = () => {
   const handleChange = () => {
@@ -7,7 +7,7 @@ const ShuffleButton = () => {
 
   return (
     <>
-      <button onClick={handleChange}>Slumpa</button>
+      <button onClick={handleChange}>Shuffle tiles</button>
     </>
   )
 }

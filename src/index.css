@@ -43,7 +43,7 @@ ul li {
   font-size: 2rem;
 }
 
-.empty {
+.empty-cell {
   background-color: #d3d3d3;
   border: none;
 }

@@ -73,6 +73,21 @@ const PlayingField = ({ numRows, numColumns }) => {
 
       setBoard(newBoard);
     }
+
+    if (isWinningState()) {
+      console.log('Winning')
+    }
+  }
+
+  const isWinningState = () => {
+    const flatBoard = board.flat();
+    const filteredFlatBoard = flatBoard.filter(cell => cell !== '');
+    const sortedBoard = [...filteredFlatBoard].sort((a, b) => a - b);
+
+    const isSortedWithoutEmpty = JSON.stringify(filteredFlatBoard) === JSON.stringify(sortedBoard);
+    const isLastTileEmpty = flatBoard[flatBoard.length - 1] === '';
+
+    return isSortedWithoutEmpty && isLastTileEmpty;
   }
 
   return (

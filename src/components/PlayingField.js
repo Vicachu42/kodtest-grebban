@@ -36,13 +36,52 @@ const PlayingField = ({ numRows, numColumns }) => {
     setBoard(generateBoard(numRows, numColumns));
   }
 
+  // TODO: Handle moving more than one cell at a time
+  const handleMovingCells = (row, column) => {
+    const emptyRowIndex = board.findIndex(row => row.includes(''));
+    const emptyColumnIndex = board[emptyRowIndex].indexOf('');
+
+    if ((Math.abs(row - emptyRowIndex) === 1 && column === emptyColumnIndex) ||
+      (Math.abs(column - emptyColumnIndex) === 1 && row === emptyRowIndex)) {
+      const newBoard = [...board];
+
+      if (emptyColumnIndex < column && emptyRowIndex === row) {
+        console.log('left');
+        for (let c = emptyColumnIndex; c < column; c++) {
+          [newBoard[row][c], newBoard[row][c + 1]] = [newBoard[row][c + 1], newBoard[row][c]];
+        }
+      }
+
+      else if (emptyColumnIndex > column && emptyRowIndex === row) {
+        console.log('right');
+        for (let c = emptyColumnIndex; c > column; c--) {
+          [newBoard[row][c], newBoard[row][c - 1]] = [newBoard[row][c - 1], newBoard[row][c]];
+        }
+      }
+      else if (emptyRowIndex > row && emptyColumnIndex === column) {
+        console.log('down');
+        for (let r = emptyRowIndex; r > row; r--) {
+          [newBoard[r][column], newBoard[r - 1][column]] = [newBoard[r - 1][column], newBoard[r][column]];
+        }
+      }
+      else if (emptyRowIndex < row && emptyColumnIndex === column) {
+        console.log('up');
+        for (let r = emptyRowIndex; r < row; r++) {
+          [newBoard[r][column], newBoard[r + 1][column]] = [newBoard[r + 1][column], newBoard[r][column]];
+        }
+      }
+
+      setBoard(newBoard);
+    }
+  }
+
   return (
     <section>
       <article id="container">
         {board.map((row, rowIndex) => (
           <ul key={rowIndex}>
-            {row.map((cell, colIndex) => (
-              <li key={colIndex} className={cell === '' ? 'empty-cell' : ''}>
+            {row.map((cell, columnIndex) => (
+              <li key={columnIndex} className={cell === '' ? 'empty-cell' : ''} onClick={() => handleMovingCells(rowIndex, columnIndex)}>
                 {cell}
               </li>
             ))}

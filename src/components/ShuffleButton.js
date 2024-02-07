@@ -1,13 +1,7 @@
-
-
-const ShuffleButton = () => {
-  const handleChange = () => {
-    console.log('Button clicked')
-  }
-
+const ShuffleButton = ({ onClick }) => {
   return (
     <>
-      <button onClick={handleChange}>Shuffle tiles</button>
+      <button onClick={onClick}>Shuffle tiles</button>
     </>
   )
 }

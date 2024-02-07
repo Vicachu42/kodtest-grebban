@@ -1,4 +1,7 @@
-const PlayingField = ({ numRows, numColumns }) => {
+import { useState } from "react";
+import ShuffleButton from "./ShuffleButton.js"
+
+const generateBoard = (numRows, numColumns) => {
   const totalCells = numRows * numColumns;
   const numbers = Array.from({ length: totalCells - 1 }, (_, index) => index + 1);
 
@@ -23,18 +26,30 @@ const PlayingField = ({ numRows, numColumns }) => {
     }
     gridData.push(row);
   }
+  return gridData
+}
+
+const PlayingField = ({ numRows, numColumns }) => {
+  const [board, setBoard] = useState(() => generateBoard(numRows, numColumns));
+
+  const shuffleBoard = () => {
+    setBoard(generateBoard(numRows, numColumns));
+  }
 
   return (
-    <section id="container">
-      {gridData.map((row, rowIndex) => (
-        <ul key={rowIndex}>
-          {row.map((cell, colIndex) => (
-            <li key={colIndex} className={cell === '' ? 'empty-cell' : ''}>
-              {cell}
-            </li>
-          ))}
-        </ul>
-      ))}
+    <section>
+      <article id="container">
+        {board.map((row, rowIndex) => (
+          <ul key={rowIndex}>
+            {row.map((cell, colIndex) => (
+              <li key={colIndex} className={cell === '' ? 'empty-cell' : ''}>
+                {cell}
+              </li>
+            ))}
+          </ul>
+        ))}
+      </article>
+      <ShuffleButton onClick={shuffleBoard} />
     </section>
   )
 }

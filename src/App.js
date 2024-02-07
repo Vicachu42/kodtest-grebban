@@ -1,8 +1,8 @@
-import PlayingField from "./components/PlayingField";
-import ShuffleButton from "./components/ShuffleButton";
+
+import PlayingField from "./components/PlayingField.js";
 import gridVariables from './config.js'
 
-function App() {
+const App = () => {
   const rows = gridVariables.rows;
   const columns = gridVariables.columns
 
@@ -12,7 +12,6 @@ function App() {
         <h1>Sliding Tile Puzzle</h1>
       </header>
       <PlayingField numRows={rows} numColumns={columns} />
-      <ShuffleButton />
     </>
   );
 }

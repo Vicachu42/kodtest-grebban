@@ -32,8 +32,8 @@ const generateBoard = (numRows, numColumns) => {
 
 const PlayingField = ({ numRows, numColumns }) => {
   const [board, setBoard] = useState(() => generateBoard(numRows, numColumns));
-  const [isOpen, setIsOpen] = useState(false);
   const [counter, setCounter] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
 
   const shuffleBoard = () => {
     setBoard(generateBoard(numRows, numColumns));
@@ -78,15 +78,14 @@ const PlayingField = ({ numRows, numColumns }) => {
     }
 
     if (isWinningState()) {
-      console.log('Winning')
       setIsOpen(true)
     }
   }
 
-  /*   const movesCounter = () => {
-      setCounter(counter => counter + 1)
-      console.log('Moves:', counter)
-    } */
+  const movesCounter = () => {
+    setCounter(counter => counter + 1)
+    console.log('Moves:', counter)
+  }
 
   const isWinningState = () => {
     const flatBoard = board.flat();
@@ -103,7 +102,7 @@ const PlayingField = ({ numRows, numColumns }) => {
     <section>
       <article id="container">
         {board.map((row, rowIndex) => (
-          <ul key={rowIndex}>
+          <ul key={rowIndex} onClick={movesCounter}>
             {row.map((cell, columnIndex) => (
               <li key={columnIndex} className={cell === '' ? 'empty-cell' : ''} onClick={() => handleMovingCells(rowIndex, columnIndex)} >
                 {cell}
@@ -113,8 +112,7 @@ const PlayingField = ({ numRows, numColumns }) => {
         ))}
       </article>
       <ShuffleButton onClick={shuffleBoard} />
-      {/* <button onClick={() => setIsOpen(true)}>Open modal</button> */}
-      {isOpen && <Modal setIsOpen={setIsOpen} />}
+      {isOpen && <Modal counter={counter} setIsOpen={setIsOpen} shuffleBoard={shuffleBoard} />}
     </section>
   )
 }

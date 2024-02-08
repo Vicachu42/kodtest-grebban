@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ShuffleButton from "./ShuffleButton.js"
+import Modal from "./Modal.js";
 
 const generateBoard = (numRows, numColumns) => {
   const totalCells = numRows * numColumns;
@@ -31,6 +32,8 @@ const generateBoard = (numRows, numColumns) => {
 
 const PlayingField = ({ numRows, numColumns }) => {
   const [board, setBoard] = useState(() => generateBoard(numRows, numColumns));
+  const [isOpen, setIsOpen] = useState(false);
+  const [counter, setCounter] = useState(1);
 
   const shuffleBoard = () => {
     setBoard(generateBoard(numRows, numColumns));
@@ -46,26 +49,26 @@ const PlayingField = ({ numRows, numColumns }) => {
       const newBoard = [...board];
 
       if (emptyColumnIndex < column && emptyRowIndex === row) {
-        console.log('left');
+        //console.log('left');
         for (let c = emptyColumnIndex; c < column; c++) {
           [newBoard[row][c], newBoard[row][c + 1]] = [newBoard[row][c + 1], newBoard[row][c]];
         }
       }
 
       else if (emptyColumnIndex > column && emptyRowIndex === row) {
-        console.log('right');
+        //console.log('right');
         for (let c = emptyColumnIndex; c > column; c--) {
           [newBoard[row][c], newBoard[row][c - 1]] = [newBoard[row][c - 1], newBoard[row][c]];
         }
       }
       else if (emptyRowIndex > row && emptyColumnIndex === column) {
-        console.log('down');
+        //console.log('down');
         for (let r = emptyRowIndex; r > row; r--) {
           [newBoard[r][column], newBoard[r - 1][column]] = [newBoard[r - 1][column], newBoard[r][column]];
         }
       }
       else if (emptyRowIndex < row && emptyColumnIndex === column) {
-        console.log('up');
+        //console.log('up');
         for (let r = emptyRowIndex; r < row; r++) {
           [newBoard[r][column], newBoard[r + 1][column]] = [newBoard[r + 1][column], newBoard[r][column]];
         }
@@ -76,8 +79,14 @@ const PlayingField = ({ numRows, numColumns }) => {
 
     if (isWinningState()) {
       console.log('Winning')
+      setIsOpen(true)
     }
   }
+
+  /*   const movesCounter = () => {
+      setCounter(counter => counter + 1)
+      console.log('Moves:', counter)
+    } */
 
   const isWinningState = () => {
     const flatBoard = board.flat();
@@ -96,7 +105,7 @@ const PlayingField = ({ numRows, numColumns }) => {
         {board.map((row, rowIndex) => (
           <ul key={rowIndex}>
             {row.map((cell, columnIndex) => (
-              <li key={columnIndex} className={cell === '' ? 'empty-cell' : ''} onClick={() => handleMovingCells(rowIndex, columnIndex)}>
+              <li key={columnIndex} className={cell === '' ? 'empty-cell' : ''} onClick={() => handleMovingCells(rowIndex, columnIndex)} >
                 {cell}
               </li>
             ))}
@@ -104,6 +113,8 @@ const PlayingField = ({ numRows, numColumns }) => {
         ))}
       </article>
       <ShuffleButton onClick={shuffleBoard} />
+      {/* <button onClick={() => setIsOpen(true)}>Open modal</button> */}
+      {isOpen && <Modal setIsOpen={setIsOpen} />}
     </section>
   )
 }

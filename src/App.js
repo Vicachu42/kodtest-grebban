@@ -1,4 +1,3 @@
-
 import PlayingField from "./components/PlayingField.js";
 import gridVariables from './config.js'
 

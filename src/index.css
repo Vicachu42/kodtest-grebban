@@ -15,14 +15,14 @@ button {
   background-color: black;
   color: white;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   padding: 0.5em 1em;
   margin-top: 1.5em;
 }
 
 #container {
   margin: 0 auto;
-  width: min(100%, 50ch);
+  width: min(100%, 60ch);
   height: auto;
   margin-inline: auto;
   background-color: #d3d3d3;
@@ -31,7 +31,7 @@ button {
 
 ul {
  display: grid;
- grid-template-columns: repeat(auto-fit, minmax(min(100%, 12ch), 1fr));
+ grid-template-columns: repeat(auto-fit, minmax(min(100%, 2ch), 1fr));
  grid-auto-rows: auto;
  padding: 0;
  margin: 0;
@@ -47,7 +47,7 @@ ul li {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   cursor: pointer;
 /*   transition: transform 0.3s ease; */
 }
@@ -67,7 +67,7 @@ li.slide-right {
 
 
 .overlay-background {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
   height: 100vh;
   z-index: 0;
@@ -79,7 +79,7 @@ li.slide-right {
 
 .modal-position {
   position: fixed;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

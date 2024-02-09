@@ -49,16 +49,7 @@ ul li {
   justify-content: center;
   font-size: 1.8rem;
   cursor: pointer;
-/*   transition: transform 0.3s ease; */
 }
-
-/* li.slide-left {
-  transform: translateX(-100%)
-}
-
-li.slide-right {
-  transform: translateX(100%)
-} */
 
 .empty-cell {
   background-color: #d3d3d3;

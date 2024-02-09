@@ -48,6 +48,7 @@ ul li {
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
+  font-size: clamp(1rem, 8vw, 2rem);
   cursor: pointer;
 }
 

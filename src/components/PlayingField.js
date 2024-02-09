@@ -37,6 +37,7 @@ const PlayingField = ({ numRows, numColumns }) => {
 
   const shuffleBoard = () => {
     setBoard(generateBoard(numRows, numColumns));
+    setCounter(1);
   }
 
   // TODO: Handle moving more than one cell at a time
@@ -75,6 +76,10 @@ const PlayingField = ({ numRows, numColumns }) => {
       }
 
       setBoard(newBoard);
+
+      if (!board[row][column]) {
+        movesCounter();
+      }
     }
 
     if (isWinningState()) {
@@ -84,7 +89,6 @@ const PlayingField = ({ numRows, numColumns }) => {
 
   const movesCounter = () => {
     setCounter(counter => counter + 1)
-    console.log('Moves:', counter)
   }
 
   const isWinningState = () => {
@@ -102,7 +106,7 @@ const PlayingField = ({ numRows, numColumns }) => {
     <section>
       <article id="container">
         {board.map((row, rowIndex) => (
-          <ul key={rowIndex} onClick={movesCounter}>
+          <ul key={rowIndex}>
             {row.map((cell, columnIndex) => (
               <li key={columnIndex} className={cell === '' ? 'empty-cell' : ''} onClick={() => handleMovingCells(rowIndex, columnIndex)} >
                 {cell}
